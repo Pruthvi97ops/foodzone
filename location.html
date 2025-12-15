@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Location</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white h-screen flex items-center justify-center">
+
+  <!-- Mobile container -->
+  <div class="w-full max-w-sm h-full px-5 py-6 flex flex-col">
+
+    <!-- Header -->
+    <h2 class="text-xl font-bold mb-4">Select your location</h2>
+
+    <!-- Search -->
+    <input
+      id="locationInput"
+      type="text"
+      placeholder="Search area, city"
+      class="border rounded-lg px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
+    />
+
+    <!-- Use current location -->
+    <button
+      onclick="useCurrentLocation()"
+      class="flex items-center justify-center gap-2 border border-orange-400 text-orange-500 rounded-lg py-3 mb-6 font-semibold">
+      📍 Use current location
+    </button>
+
+    <!-- Popular locations -->
+    <p class="text-sm text-gray-500 mb-2">Popular locations</p>
+    <div class="space-y-3">
+      <button onclick="selectLocation('Sonepur')" class="w-full text-left border rounded-lg px-4 py-3">Sonepur</button>
+      <button onclick="selectLocation('Balangir')" class="w-full text-left border rounded-lg px-4 py-3">Balangir</button>
+      <button onclick="selectLocation('Sambalpur')" class="w-full text-left border rounded-lg px-4 py-3">Sambalpur</button>
+      <button onclick="selectLocation('Bargarh')" class="w-full text-left border rounded-lg px-4 py-3">Bargarh</button>
+      <button onclick="selectLocation('Rourkela')" class="w-full text-left border rounded-lg px-4 py-3">Rourkela</button>
+
+    </div>
+
+    <!-- Continue -->
+    <button
+      onclick="continueNext()"
+      class="mt-auto bg-orange-500 text-white py-3 rounded-lg font-semibold">
+      Continue
+    </button>
+
+  </div>
+
+<script>
+  let selectedLocation = "";
+
+  function selectLocation(city) {
+    selectedLocation = city;
+    document.getElementById("locationInput").value = city;
+  }
+
+  function useCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      () => {
+        selectedLocation = "Current Location";
+        document.getElementById("locationInput").value = "Current Location";
+      },
+      () => alert("Location permission denied")
+    );
+  }
+
+  function continueNext() {
+    const input = document.getElementById("locationInput").value;
+    if (!input) {
+      alert("Please select a location");
+      return;
+    }
+    localStorage.setItem("userLocation", input);
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
