@@ -3,15 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home | Food App</title>
+  <title>FoodZone</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100">
 
-<!-- Mobile container -->
-<div class="max-w-sm mx-auto min-h-screen bg-white">
+<!-- ================= LOGIN SCREEN ================= -->
+<div id="loginScreen" class="h-screen bg-gradient-to-b from-slate-700 to-slate-200 flex items-center justify-center">
+  <div class="w-full max-w-sm h-full flex flex-col items-center justify-between px-6 py-10">
 
-  <!-- Top bar -->
+    <div class="flex flex-col items-center mt-10">
+      <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">🍴</div>
+      <h1 class="text-3xl font-bold text-white">FoodZone</h1>
+    </div>
+
+    <div class="w-full space-y-4 mb-20">
+      <button class="w-full py-3 rounded-full bg-emerald-600 text-white font-semibold">Sign Up</button>
+      <button class="w-full py-3 rounded-full bg-orange-400 text-white font-semibold">Log Up</button>
+
+      <button onclick="showScreen('location')" class="w-full py-3 rounded-full bg-white text-black font-semibold text-xl">
+        Skip
+      </button>
+
+      <div class="flex justify-between text-sm text-slate-700 px-2 mt-4">
+        <a href="#" class="underline">Log In</a>
+        <a href="#" class="underline">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LOCATION SCREEN ================= -->
+<div id="locationScreen" class="hidden bg-white h-screen flex items-center justify-center">
+  <div class="w-full max-w-sm h-full px-5 py-6 flex flex-col">
+
+    <h2 class="text-xl font-bold mb-4">Select your location</h2>
+
+    <input id="locationInput" type="text" placeholder="Search area, city"
+      class="border rounded-lg px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"/>
+
+    <button onclick="useCurrentLocation()"
+      class="flex items-center justify-center gap-2 border border-orange-400 text-orange-500 rounded-lg py-3 mb-6 font-semibold">
+      📍 Use current location
+    </button>
+
+    <div class="space-y-3">
+      <button onclick="selectLocation('Sonepur')" class="w-full text-left border rounded-lg px-4 py-3">Sonepur</button>
+      <button onclick="selectLocation('Balangir')" class="w-full text-left border rounded-lg px-4 py-3">Balangir</button>
+      <button onclick="selectLocation('Sambalpur')" class="w-full text-left border rounded-lg px-4 py-3">Sambalpur</button>
+      <button onclick="selectLocation('Bargarh')" class="w-full text-left border rounded-lg px-4 py-3">Bargarh</button>
+      <button onclick="selectLocation('Rourkela')" class="w-full text-left border rounded-lg px-4 py-3">Rourkela</button>
+    </div>
+
+    <button onclick="continueNext()"
+      class="mt-auto bg-orange-500 text-white py-3 rounded-lg font-semibold">
+      Continue
+    </button>
+  </div>
+</div>
+
+<!-- ================= HOME SCREEN ================= -->
+<!-- ================= HOME SCREEN ================= -->
+<div id="homeScreen" class="max-w-sm mx-auto min-h-screen bg-white">
+
+  <!-- Top Bar -->
   <div class="flex items-center justify-between p-4 shadow-sm">
     <div>
       <p class="text-xs text-gray-500">Deliver to</p>
@@ -23,15 +79,13 @@
   <!-- Search -->
   <div class="p-4">
     <input
-  type="text"
-  id="searchInput"
-  placeholder="Search for restaurants or food"
-  class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:outline-none"
-  oninput="searchDishes()"
-/>
+      id="searchInput"
+      placeholder="Search for restaurants or food"
+      class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:outline-none"
+    />
   </div>
 
-  <!-- Offer banner -->
+  <!-- Offer Banner -->
   <div class="px-4">
     <div class="bg-orange-500 text-white rounded-lg p-4 text-sm font-semibold">
       Flat 50% OFF on first order 🎉
@@ -39,35 +93,31 @@
   </div>
 
   <!-- Categories -->
-  <div class="px-4 mt-4">
-    <p class="font-semibold mb-2">Categories</p>
-    <div class="flex gap-3 overflow-x-auto">
-      <div onclick="showDishes('pizza')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Pizza</div>
-      <div onclick="showDishes('burger')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Burger</div>
-      <div onclick="showDishes('biryani')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Biryani</div>
-      <div onclick="showDishes('rolls')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Rolls</div>
-    </div>
+  <!-- Categories -->
+<div class="px-4 mt-4">
+  <p class="font-semibold mb-2">Categories</p>
+  <div class="flex gap-3 overflow-x-auto">
+    <div onclick="showDishes('pizza')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Pizza</div>
+    <div onclick="showDishes('burger')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Burger</div>
+    <div onclick="showDishes('biryani')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Biryani</div>
+    <div onclick="showDishes('rolls')" class="min-w-[70px] bg-gray-100 p-3 rounded-lg text-center text-sm cursor-pointer hover:bg-orange-100 transition">Rolls</div>
   </div>
+</div>
 
-  <!-- Dishes Section (Initially Hidden) -->
+
+  <!-- Dishes Section -->
   <div id="dishesSection" class="px-4 mt-5 hidden">
     <p class="font-semibold mb-3" id="dishTitle">Dishes</p>
-    <div id="dishesContainer" class="grid grid-cols-1 gap-4">
-      <!-- Dishes will be inserted here -->
-    </div>
+    <div id="dishesContainer" class="grid grid-cols-1 gap-4"></div>
   </div>
 
   <!-- Restaurants -->
   <div class="px-4 mt-5">
     <p class="font-semibold mb-3">Restaurants near you</p>
 
-    <!-- Card -->
-    <div 
-      onclick="goToMenu()" 
-      class="bg-white rounded-xl shadow mb-4 cursor-pointer">
-      <img 
+    <div class="bg-white rounded-xl shadow mb-4 cursor-pointer">
+      <img
         src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
-        alt="Spice Hub"
         class="h-36 w-full object-cover rounded-t-xl"
       />
       <div class="p-3">
@@ -79,7 +129,6 @@
     <div class="bg-white rounded-xl shadow mb-4">
       <img
         src="https://images.unsplash.com/photo-1550547660-d9450f859349"
-        alt="Burger Town"
         class="h-36 w-full object-cover rounded-t-xl"
       />
       <div class="p-3">
@@ -93,8 +142,41 @@
 </div>
 
 
+<!-- ================= SCRIPT ================= -->
 <script>
-  const dishesData = {
+function showScreen(screen) {
+  loginScreen.classList.add('hidden');
+  locationScreen.classList.add('hidden');
+  homeScreen.classList.add('hidden');
+
+  if (screen === 'login') loginScreen.classList.remove('hidden');
+  if (screen === 'location') locationScreen.classList.remove('hidden');
+  if (screen === 'home') {
+    homeScreen.classList.remove('hidden');
+    const loc = localStorage.getItem("userLocation");
+    if (loc) locationText.innerText = loc;
+  }
+}
+
+function selectLocation(city) {
+  locationInput.value = city;
+}
+
+function useCurrentLocation() {
+  navigator.geolocation.getCurrentPosition(pos => {
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+      .then(r => r.json())
+      .then(d => locationInput.value = d.address.city || d.address.town || "Location found");
+  });
+}
+
+function continueNext() {
+  if (!locationInput.value) return alert("Select location");
+  localStorage.setItem("userLocation", locationInput.value);
+  showScreen('home');
+}
+
+const dishesData = {
     pizza: [
       { name: "Cheese-Pizzas", restaurant: "Pizza Palace", img: "https://www.tasteofhome.com/wp-content/uploads/2024/03/Cheese-Pizzas_EXPS_FT23_275162_ST_1128_8.jpg" },
       { name: "Veggie Supreme", restaurant: "Cheesy Crust", img: "https://us2guntur.com/images//10024img/chg8_B_020924.jpg" }
@@ -113,85 +195,20 @@
     ]
   };
 
-  function showDishes(category) {
-    const dishesSection = document.getElementById('dishesSection');
-    const dishTitle = document.getElementById('dishTitle');
-    const dishesContainer = document.getElementById('dishesContainer');
+function showDishes(cat){
+  dishesSection.classList.remove('hidden');
+  dishTitle.innerText = cat;
+  dishesContainer.innerHTML='';
+  dishesData[cat]?.forEach(d=>{
+    dishesContainer.innerHTML+=`
+      <div class="bg-white rounded-xl shadow">
+        <img src="${d.img}" class="h-40 w-full object-cover">
+        <div class="p-3"><p class="font-semibold">${d.name}</p><p class="text-sm text-gray-500">${d.restaurant}</p></div>
+      </div>`;
+  });
+}
 
-    dishTitle.innerText = category.charAt(0).toUpperCase() + category.slice(1);
-    dishesContainer.innerHTML = '';
-
-    const dishes = dishesData[category];
-    dishes.forEach(dish => {
-      const dishCard = document.createElement('div');
-      dishCard.className = 'bg-white rounded-xl shadow overflow-hidden';
-      dishCard.innerHTML = `
-        <img src="${dish.img}" alt="${dish.name}" class="h-40 w-full object-cover" />
-        <div class="p-3">
-          <p class="font-semibold">${dish.name}</p>
-          <p class="text-sm text-gray-500">${dish.restaurant}</p>
-        </div>
-      `;
-      dishesContainer.appendChild(dishCard);
-    });
-
-    dishesSection.classList.remove('hidden');
-  }
-
-  const loc = localStorage.getItem("userLocation");
-  if (loc) document.getElementById("locationText").innerText = loc;
-
-  function goToMenu() {
-    window.location.href = "menu.html";
-  }
-
-
-
-
-
-
-
-
-  function searchDishes() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const dishesSection = document.getElementById('dishesSection');
-    const dishTitle = document.getElementById('dishTitle');
-    const dishesContainer = document.getElementById('dishesContainer');
-
-    if (searchTerm === '') {
-      dishesSection.classList.add('hidden');
-      return;
-    }
-
-    dishesContainer.innerHTML = '';
-    let found = false;
-
-    for (let category in dishesData) {
-      const dishes = dishesData[category];
-      const matchedDishes = dishes.filter(dish => 
-        dish.name.toLowerCase().includes(searchTerm) || 
-        dish.restaurant.toLowerCase().includes(searchTerm) ||
-        category.toLowerCase().includes(searchTerm)
-      );
-
-      matchedDishes.forEach(dish => {
-        found = true;
-        const dishCard = document.createElement('div');
-        dishCard.className = 'bg-white rounded-xl shadow overflow-hidden';
-        dishCard.innerHTML = `
-          <img src="${dish.img}" alt="${dish.name}" class="h-40 w-full object-cover" />
-          <div class="p-3">
-            <p class="font-semibold">${dish.name}</p>
-            <p class="text-sm text-gray-500">${dish.restaurant}</p>
-          </div>
-        `;
-        dishesContainer.appendChild(dishCard);
-      });
-    }
-
-    dishTitle.innerText = found ? 'Search Results' : 'No dishes found';
-    dishesSection.classList.remove('hidden');
-  }
+showScreen('login');
 </script>
 
 </body>
