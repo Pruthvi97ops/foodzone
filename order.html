@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Confirmed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<div class="max-w-sm mx-auto min-h-screen bg-white flex flex-col">
+
+  <!-- Header -->
+  <div class="p-4 shadow font-semibold text-lg text-center">
+    Order Confirmed 🎉
+  </div>
+
+  <!-- Success -->
+  <div class="p-6 text-center border-b">
+    <p class="text-green-600 text-3xl mb-2">✔</p>
+    <p class="font-semibold">Your order has been placed</p>
+    <p class="text-sm text-gray-500 mt-1">Order ID: #FF1234</p>
+    <p class="text-sm text-gray-500 mt-1">ETA: 25 mins</p>
+  </div>
+
+  <!-- Status -->
+  <div class="p-6 space-y-3 flex-1">
+    <div class="flex items-center gap-3 text-green-600">
+      <span>✔</span><span>Order Confirmed</span>
+    </div>
+    <div class="flex items-center gap-3 text-orange-500">
+      <span>⏳</span><span>Preparing Food</span>
+    </div>
+    <div class="flex items-center gap-3 text-gray-400">
+      <span>🚴</span><span>On the way</span>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="p-4 border-t space-y-3">
+    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold">
+      Track Order
+    </button>
+    <button
+      onclick="goHome()"
+      class="w-full border py-3 rounded-lg font-semibold">
+      Go to Home
+    </button>
+  </div>
+
+</div>
+
+<script>
+  function goHome() {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>

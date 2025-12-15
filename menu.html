@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<div class="max-w-sm mx-auto min-h-screen bg-white">
+
+  <!-- Header -->
+  <div class="relative">
+  <!-- Image -->
+  <img
+    src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092"
+    alt="Restaurant"
+    class="h-40 w-full object-cover"
+  />
+
+  <!-- Back button -->
+  <button class="absolute top-3 left-3 bg-white p-2 rounded-full">←</button>
+</div>
+
+
+  <!-- Restaurant info -->
+  <div class="p-4 border-b">
+    <h2 class="text-xl font-bold">Spice Hub</h2>
+    <p class="text-sm text-gray-500">⭐ 4.3 • 25 mins • ₹200 for two</p>
+  </div>
+
+  <!-- Menu -->
+  <div class="p-4">
+    <h3 class="font-semibold mb-3">Recommended</h3>
+
+    <!-- Item -->
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <p class="font-semibold">Chicken Biryani</p>
+        <p class="text-sm text-gray-500">₹180</p>
+      </div>
+      <button class="border border-green-500 text-green-600 px-4 py-1 rounded">
+        ADD
+      </button>
+    </div>
+
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <p class="font-semibold">Paneer Butter Masala</p>
+        <p class="text-sm text-gray-500">₹160</p>
+      </div>
+      <button class="border border-green-500 text-green-600 px-4 py-1 rounded">
+        ADD
+      </button>
+    </div>
+
+  </div>
+
+  <!-- View Cart -->
+  <div class="fixed bottom-0 left-0 right-0 max-w-sm mx-auto">
+  <button 
+    onclick="goToCart()"
+    class="w-full bg-green-600 text-white py-3 font-semibold">
+    View Cart
+  </button>
+</div>
+
+</div>
+<script>
+  function goToCart() {
+    window.location.href = "cart.html";
+  }
+</script>
+
+</body>
+</html>
